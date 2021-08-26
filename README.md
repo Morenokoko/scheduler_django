@@ -1,4 +1,4 @@
-# scheduler_django
+# scheduler_django Proficiency_test Option D
 App timeline:
 - 5 days, date started: Sun, 22/8/21, date ended: Thu, 26/8/21
 
