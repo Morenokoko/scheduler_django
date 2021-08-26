@@ -1,4 +1,3 @@
-from django.forms import fields, widgets
 import django_filters
 from django_filters import DateFilter
 from django import forms
@@ -20,12 +19,6 @@ class AvailabilityFilter(django_filters.FilterSet):
     ='lte', label='Ending shift', widget=forms.Select(choices=HOUR_CHOICES))
     rank = django_filters.NumberFilter(field_name='rank', label='Rank', widget=forms.NumberInput(attrs={'min':1, 'max':24}))
 
-    # class Meta:
-    #     model = Availability
-    #     fields = []
-        # widgets ={
-        #     'date': forms.DateInput()
-        # }
 
 class ScheduleFilter(django_filters.FilterSet):
     start_date = DateFilter(field_name="date", lookup_expr='gte', label='From',
@@ -40,7 +33,3 @@ class ScheduleFilter(django_filters.FilterSet):
     class Meta:
         model = Schedule
         fields = ['employee']
-        # fields = ['shift', 'employee']
-        # widgets = {
-		# 	'shift': forms.Select(choices= HOUR_CHOICES)
-        # }

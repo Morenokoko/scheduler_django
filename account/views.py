@@ -1,17 +1,9 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
-from django.forms import inlineformset_factory
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.utils.safestring import mark_safe
-from django.views import generic
-from django.utils.decorators import method_decorator
 from datetime import date
-from django.utils import timezone
 from django.db import IntegrityError
-import datetime
 
 # Create your views here.
 from .models import *
@@ -143,10 +135,6 @@ def createSchedule(availability):
                     print('updating schedule to user with higher rank')
                     updateSchedule(availability)
                     return
-            # else:
-            #     print('no schedule with ',availability.date,' exists, saving new schedule')
-            #     saveSchedule(availability)
-            #     return
         except schedule.DoesNotExist:
             print('schedule does not exist')
             saveSchedule(availability)
@@ -157,9 +145,6 @@ def createSchedule(availability):
 
 def saveSchedule(availability):
     print('running save schedule')
-    # for i in Shift.objects.all():
-    #     # if i.shiftstarttime == availability.shift.shiftstarttime: 
-    #     if i.time == availability.shift.time:
     print('adding user to specific shift in schedule')
     schedule = Schedule()
     schedule.date = availability.date
