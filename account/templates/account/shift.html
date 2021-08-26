@@ -1,0 +1,27 @@
+{%  extends 'account/index.html' %}
+
+{% block content %}
+<br>
+<h3>Add Shift</h3>
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card card-body">
+            <form method="POST" action="">
+                {% csrf_token %} 
+                {{form.as_p}}
+                <!-- <label for {{form.date}}>Date:</label>
+                    {{ form.date }}
+                    {{ form.date.errors }}
+                <label>Shift:</label>
+                    {{ form.shift }}
+                    {{ form.shift.errors }}
+                <label>Rank</label>
+                {{ form.rank }}
+                {{ form.rank.errors }} -->
+                <input type="submit" name="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+<!-- {{form.errors}} to show the errors if user types in invalid information -->
+{% endblock %}
