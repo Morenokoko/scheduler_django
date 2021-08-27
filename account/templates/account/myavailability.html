@@ -3,7 +3,7 @@
 {% block content %}
 
 <br>
-<h3>Availability</h3>
+<h3> Your Availabilities</h3>
 <div class="row justify-content-center">
     <div class="col-lg-9">
         <div class="col-lg-12" style="margin: 0; padding: 0;">
@@ -17,7 +17,7 @@
         </div><br>
         <div class="col-lg-9 align-self-center" style="margin: 0; padding: 0;">
             <button class="btn btn-primary" style='margin: auto;'>
-                <a class="nav-link" style="color: white" href="{% url 'shiftavailability' %}">Add Shift</a>
+                <a class="nav-link" style="color: white" href="{% url 'shiftavailability'%}">Add Shift</a>
             </button>
         </div>
     </div>
@@ -27,52 +27,38 @@
 <div class="row justify-content-center">
     <div class="col-lg-9">
         <div class="card card-body">
-            {% if availability_date_list|length > 0 %}
-                {% for d in availability_date_list %}
-                    <table class="table table-sm">
-                        <tr>
-                            <th>{{d|date:"D, j M Y"}}</th>
-                        </tr>
-                        <table class="table">
+            <div style="overflow: auto; height: 45vh;">
+                {% if availability_date_list|length > 0 %}
+                    {% for d in availability_date_list %}
+                        <table class="table table-sm">
                             <tr>
-                                <th>Shift</th>
-                                <th>Rank</th>
-                                <th></th>
-                                <th></th>
+                                <th>{{d|date:"D, j M Y"}}</th>
                             </tr>
-
-                            {% for i in availability_list %}
-                            {% if i.date == d %}
+                            <table class="table">
                                 <tr>
-                                    <td>{{i.shift}}</td>
-                                    <td>{{i.rank}}</td>
-                                    <td><a class="btn btn-sm btn-info" href="{% url 'update_availability' i.id %}">Update</a></li></td>
-                                    <td><a class="btn btn-sm btn-danger" href="{% url 'delete_availability' i.id %}">Delete</a></td>
+                                    <th>Shift</th>
+                                    <th>Rank</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
-                                {% endif %}
-                            {% endfor %}
+
+                                {% for i in availability_list %}
+                                {% if i.date == d %}
+                                    <tr>
+                                        <td>{{i.shift}}</td>
+                                        <td>{{i.rank}}</td>
+                                        <td><a class="btn btn-sm btn-info" href="{% url 'update_availability' i.id %}">Update</a></li></td>
+                                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_availability' i.id %}">Delete</a></td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
                         </table>
-                    </table>
-                {% endfor %}
-            {% else %}
-                <p>No shift availabilites added yet</p>
-            {% endif %}
-            <!-- <table class="table table-sm">
-                <tr>
-                    <th>Date</th>
-                    <th>Shift</th>
-                    <th>Rank</th>
-                </tr>
-            
-                {% for i in availability_list %}
-                    <tr>
-                        <td>{{i.date|date:"D, j M Y"}}</td>
-                        <td>{{i.shift}}</td>
-                        <td>{{i.rank}}</td>
-                    </tr>
-                {% endfor %}
-                
-            </table> -->
+                    {% endfor %}
+                {% else %}
+                    <p>No shift availabilites added yet</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

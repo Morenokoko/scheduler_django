@@ -6,11 +6,18 @@
 <div class="row justify-content-center">
     <div class="col-md-5">
         <div class="card card-body">
-            <form method="POST" action="">
-                {% csrf_token %} 
-                {{form.as_p}}
-                <input type="submit" name="Submit">
-            </form>
+            <form action="" method="POST">
+				{% csrf_token %}
+                {{ dateform }}<br><br>
+				{{ form.management_form }}
+                <div style="overflow: auto; height: 50vh;">
+                {% for field in form %}
+                    {{ field }}<hr>
+                {% endfor %}
+                </div>
+                <br>
+				<input type="submit" name="Submit">
+			</form>
         </div>
     </div>
 </div>

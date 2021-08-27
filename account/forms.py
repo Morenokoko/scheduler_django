@@ -27,14 +27,6 @@ class ShiftForm(ModelForm):
 			'rank': NumberInput(attrs={'min':1, 'max':24})
         }
 
-# class AvailabilityForm(forms.Form, ModelForm):
-# 	class Meta:
-# 		#CHOICES=[(1,'1'), (2,'2')]
-# 		model = Availability
-# 		fields = ['date', 'shift']
-# 		#fields = ['date', 'shift1', 'shift2', 'shift1rank', 'shift2rank']
-# 		widgets = {
-#             'date': DateInput(),
-#             'shift': CheckboxSelectMultiple(),
-# 			'shiftrank': RadioSelect(choices=CHOICES),
-#         }
+class DateForm(forms.Form):
+	date = forms.DateField(label='Date', widget=DateInput(attrs={'min': dt.date.today}))
+

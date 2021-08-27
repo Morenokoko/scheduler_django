@@ -20,32 +20,34 @@
 <div class="row justify-content-center">
     <div class="col-lg-9">
         <div class="card card-body">
-            {% if schedule_date_list|length > 0 %}
-                {% for d in schedule_date_list %}
-                    <table class="table">
-                        <tr>
-                            <th>{{d|date:"D, j M Y"}}</th>
-                        </tr>
+            <div style="overflow: auto; height: 55vh;">
+                {% if schedule_date_list|length > 0 %}
+                    {% for d in schedule_date_list %}
                         <table class="table">
                             <tr>
-                                <th>Shift</th>
-                                <th>Employee on Shift</th>
+                                <th>{{d|date:"D, j M Y"}}</th>
                             </tr>
-
-                            {% for i in schedule %}
-                            {% if i.date == d %}
+                            <table class="table">
                                 <tr>
-                                    <td>{{i.shift}}</td>
-                                    <td>{{i.employee}}</td>
+                                    <th>Shift</th>
+                                    <th>Employee on Shift</th>
                                 </tr>
-                                {% endif %}
-                            {% endfor %}
+
+                                {% for i in schedule %}
+                                {% if i.date == d %}
+                                    <tr>
+                                        <td>{{i.shift}}</td>
+                                        <td>{{i.employee}}</td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
                         </table>
-                    </table>
-                {% endfor %}
-            {% else %}
-                    <p>No Schedule available yet</p>
-            {% endif %}
+                    {% endfor %}
+                {% else %}
+                        <p>No Schedule available yet</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
